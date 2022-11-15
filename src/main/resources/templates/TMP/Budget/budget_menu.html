@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<html lang="en">-->
+<head>
+    <meta charset="UTF-8">
+    <title>Budget</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style type="text/css"></style>
+</head>
+<body>
+    <h1 th:align="center"> Бюджет </h1>
+    <div>
+    <table th:align="center">
+        <tr>
+            <th>
+                <form action="/addPaymentForm" method="GET">
+                    <button>Добавить информацию</button>
+                </form>
+            </th>
+             <th>
+                <form action="/editPaymentForm" method="GET">
+                    <button>Изменить информацию</button>
+                </form>
+            </th>
+             <th>
+                <form action="/removePaymentForm" method="GET">
+                    <button>Удалить информацию</button>
+                </form>
+            </th>
+            <th>
+                <form action="/selectPaymentForm" method="GET">
+                    <button>Выбрать данные</button>
+                </form>
+            </th>
+            <th>
+                <form action="/start" method="GET">
+                    <button>Основное меню</button>
+                </form>
+            </th>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
+

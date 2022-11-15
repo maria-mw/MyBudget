@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Insert Account</title>
+</head>
+<body>
+<h1> New Account </h1> <hr/>
+<form th:action="@{/addBudget}" th:object="${budget}" method="post">
+    Enter Description <br/>
+    <input type="text" th:field="*{comments}"> <br/> <br/>
+
+    Select Account Type <br/>
+    <select th:field="*{accountType}">
+        <option value=""> Nothing selected </option>
+        <option th:each="list : ${accountTypeList}"
+                th:value="${list.id}"
+                th:utext="${list.title}"></option>
+    </select>
+    <br/>
+    <br/>
+    Select Currency Type <br/>
+    <select th:field="*{currencyType}">
+        <option value=""> Nothing selected </option>
+        <option th:each="list : ${currencyTypeList}"
+                th:value="${list.id}"
+                th:utext="${list.title}"></option>
+    </select>
+    <br/>
+    <br/>
+    Select Financial Institute <br/>
+    <select th:field="*{financialInstitute}">
+        <option value=""> Nothing selected </option>
+        <option th:each="list : ${financialInstituteList}"
+                th:value="${list.id}"
+                th:utext="${list.title}"></option>
+    </select>
+    <br/>
+    <br/>
+    <input type="submit" value="Submit">
+</form>
+<hr/>
+<a th:href="@{/home}">Go Home Page</a>
+<h3 th:text="${message}"></h3>
+
+<center>
+    <table border="5" width="40%">
+        <tr>
+            <th> ID </th>
+            <th> COMMENTS </th>
+            <th> ACCOUNT TYPE </th>
+            <th> CURRENCY TYPE </th>
+            <th> FINANCIAL INSTITUTE </th>
+        </tr>
+        <tr th:each="tab : ${data}">
+            <td th:text="${tab.id}">  </td>
+            <td th:text="${tab.comments}">  </td>
+            <td th:text="${tab.accountType.title}">  </td>
+            <td th:text="${tab.currencyType.title}">  </td>
+            <td th:text="${tab.financialInstitute.title}"></td>
+        </tr>
+    </table>
+</center>
+</body>
+</html>
+

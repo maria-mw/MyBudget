@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<html lang="en">-->
+<head>
+    <meta charset="UTF-8">
+    <title>Диаграммы</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<!--<div class="accountType">-->
+<!--    <select>-->
+<!--        <option>Выберите тип счета</option>-->
+<!--        <option th:each="accountType : ${accountTypes}" th:text="${accountType.title}">-->
+<!--        </option>-->
+<!--    </select>-->
+<!--</div>-->
+<!--<div class="currencyType">-->
+<!--    <select>-->
+<!--        <option>Выберите валюту</option>-->
+<!--        <option th:each="currencyType : ${currencyTypes}" th:text="${currencyType.title}">-->
+<!--        </option>-->
+<!--    </select>-->
+<!--</div>-->
+<!--<div class="financialInstitute">-->
+<!--    <select>-->
+<!--        <option>Выберите финансовое учреждение</option>-->
+<!--        <option th:each="financialInstitute : ${financialInstitutes}" th:text="${financialInstitute.title}">-->
+<!--        </option>-->
+<!--    </select>-->
+<!--</div>-->
+<!--<div class="transactionType">-->
+<!--    <select>-->
+<!--        <option value="">Выберите тип транзакции</option>-->
+<!--        <option th:each="transactionType : ${transactionTypes}" th:text="${transactionType.title}">-->
+<!--        </option>-->
+<!--    </select>-->
+<!--</div>-->
+
+<!--<div class="transactionCategory">-->
+<!--    <select>-->
+<!--        <option value="">Выберите категорию</option>-->
+<!--        <option th:each="transactionCategory : ${transactionCategories}"-->
+<!--                th:if="${transactionCategory.getSuperCategory()} == null" th:text="${transactionCategory.title}">-->
+<!--        </option>-->
+<!--    </select>-->
+
+<!--    <select>-->
+<!--        <option value="">Выберите подкатегорию</option>-->
+<!--        <option value="" th:each="transactionCategory : ${transactionCategories}"-->
+<!--                th:if="${transactionCategory.getSuperCategory()} != null" th:text="${transactionCategory.title}"></option>-->
+<!--    </select>-->
+<!--</div>-->
+<!--<div>-->
+<!--    <select th:each="category : ${transactionCategoryMap}" >-->
+<!--        <option th:text="${category.key.title}"></option>-->
+<!--        <option th:each="subcategory : ${category.value}" th:text="${subcategory.title}"></option>-->
+<!--    </select>-->
+<!--</div>-->
+<!--<form action="/addAccount" method="POST">-->
+<!--    <p>Добавление счета</p>-->
+<!--    <div class="financialInstitute">-->
+<!--        <label>Финансовое учреждение</label>-->
+<!--        <select >-->
+<!--&lt;!&ndash;            <option>Выберите финансовое учреждение</option>&ndash;&gt;-->
+<!--            <option th:each="financialInstitute : ${financialInstitutes}" th:value="${financialInstitute}" th:text="${financialInstitute.title}">-->
+<!--            </option>-->
+<!--        </select>-->
+<!--&lt;!&ndash;        <label for="financialInstitute">financialInstitute</label>&ndash;&gt;-->
+<!--&lt;!&ndash;        <input name="financialInstitute" id="financialInstitute">&ndash;&gt;-->
+<!--    </div>-->
+
+<!--    <div class="accountType">-->
+<!--    <label>Тип счета</label>-->
+<!--    <select>-->
+<!--&lt;!&ndash;        <option>Выберите тип счета</option>&ndash;&gt;-->
+<!--        <option th:each="accountType : ${accountTypes}" th:value="${accountType}" th:text="${accountType.title}">-->
+<!--        </option>-->
+<!--    </select>-->
+<!--&lt;!&ndash;        <label for="accountType">accountType</label>&ndash;&gt;-->
+<!--&lt;!&ndash;        <input name="accountType" id="accountType">&ndash;&gt;-->
+<!--</div>-->
+<!--    <div class="currencyType">-->
+<!--        <label>Тип валюты</label>-->
+<!--        <select>-->
+<!--&lt;!&ndash;            <option>Выберите валюту</option>&ndash;&gt;-->
+<!--            <option th:each="currencyType : ${currencyTypes}" th:value="${currencyType}" th:text="${currencyType.title}">-->
+<!--            </option>-->
+<!--        </select>-->
+<!--&lt;!&ndash;        <label for="currencyType">currencyType</label>&ndash;&gt;-->
+<!--&lt;!&ndash;        <input name="currencyType" id="currencyType">&ndash;&gt;-->
+<!--    </div>-->
+
+<!--    <div>-->
+<!--        <label for="accountComments">Comments</label>-->
+<!--        <input name="comments" id="accountComments">-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <button>Добавить счет</button>-->
+<!--    </div>-->
+<!--</form>-->
+<form action="/start" method="GET">
+    <button>Основное меню</button>
+</form>
+</body>
+</html>
+

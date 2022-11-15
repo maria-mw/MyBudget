@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<html lang="en">-->
+<head>
+    <meta charset="UTF-8">
+    <title>Add Account</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<h1 th:align="center">Добавление счета</h1>
+<form th:align="center" th:action="@{/addAccount}" th:object="${accountTypes}" th:object="${financialInstitutes}" th:object="${currencyTypes}" method="POST">
+<!--    <form th:align="center" action="/addAccount" method="POST">-->
+    <div class="financialInstitute">
+        <label>Финансовое учреждение</label>
+        <select>
+            <option>Выберите финансовое учреждение</option>
+            <option th:each="financialInstitute : ${financialInstitutes}" th:value="${financialInstitute}"
+                    th:text="${financialInstitute.title}">
+            </option>
+        </select>
+        <!--        <label for="financialInstitute">Финансовый институт</label>-->
+        <!--        <input name="financialInstitute" id="financialInstitute">-->
+    </div>
+
+    <div class="accountType">
+        <label>Тип счета</label>
+        <select>
+            <option>Выберите тип счета</option>
+            <option th:each="accountType : ${accountTypes}" th:value="${accountType}" th:text="${accountType.title}">
+            </option>
+        </select>
+        <!--        <label for="accountType">Тип счета</label>-->
+        <!--        <input name="accountType" id="accountType">-->
+    </div>
+    <div class="currencyType">
+        <label>Тип валюты</label>
+        <select>
+            <option>Выберите валюту</option>
+            <option th:each="currencyType : ${currencyTypes}" th:value="${currencyType}"
+                    th:text="${currencyType.title}">
+            </option>
+        </select>
+        <!--        <label for="currencyType">Валюта</label>-->
+        <!--        <input name="currencyType" id="currencyType">-->
+    </div>
+
+    <div>
+        <label for="accountComments">Комментарии</label>
+        <input name="comments" id="accountComments">
+    </div>
+    <div>
+        <button >Добавить счет</button>
+    </div>
+</form>
+<!--<form th:align="center" action="/toCatalogs" method="GET">-->
+<!--    <button>Меню</button>-->
+<!--</form>-->
+</body>
+</html>
+

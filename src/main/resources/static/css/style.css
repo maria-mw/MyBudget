@@ -1,0 +1,192 @@
+header{
+  background: linear-gradient(to bottom, #5CC9FF, #ffffff); 
+  color: #0800FF;
+}
+
+main {
+  background: linear-gradient(#ffffff, #93DBFF, #ffffff, #93DBFF, #ffffff); 
+  color: #0800FF;
+}
+
+ul.fontawesome {
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+  font-family: 'fa-brands-400', 'fa-solid-900';
+  list-style: none;
+}
+
+h1 {
+  font-family: "Philosopher-R";
+  font-size: 5.0rem;
+  align: center;
+  margin: 0 auto
+}
+
+.table {
+  color: #0800FF; 
+  border: 1px solid #0800FF
+}
+
+img {
+  max-width: 100%;
+}
+
+header {
+  overflow: hidden;
+}
+
+header .header__top_name,
+header .header__top_icons {
+  min-height: 10.0rem;
+  display: flex;
+  align-items: center;
+  color: #0800FF;
+  text-align: center;
+}
+
+header .header__top_icons a:hover,
+header .header__top_icons li:hover {
+  color: #ffffff;
+}
+
+header .header__list {
+  position: relative;
+  display: flex;
+  flex-grow: 1;
+}
+
+header .header__list ul {
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+  margin-top: 2.0rem;
+  text-align: center;
+  padding: 0;
+}
+
+header .header__list li {
+  list-style-type: none;
+  margin: auto;
+  color: #0800FF;
+  text-transform: uppercase;
+}
+
+header .header__list li:hover {
+  list-style-type: none;
+  color: #109FFF;
+}
+
+@media (max-width: 991px) {
+    .header__list ul {
+        flex-direction: column;
+    }
+} 
+
+.aboutUs, .latina, .standard,.social,
+.schedule,.teacher,.question,.review,.contact{
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.aboutUs__header, .latina__header, .standard__header, 
+.social__header,.schedule__header, .teacher__header, 
+.question_header, .review__header, .contact__header{
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.question h2 {
+  margin-bottom: 36px;
+  color: #0800FF;
+}
+
+.question h5 {
+  color: #0800FF;
+}
+
+.accordion__item {
+  border: none;
+}
+
+.accordion__button:before {
+  content: '';
+  background: url('img/arrow-up.jpg') 0 70%/15px no-repeat;
+  margin-top: 20px;
+  width: 25px;
+  height: 25px;
+  display: inline-block;
+  margin: 0 15px 0 0;
+}
+
+.accordion__button:after {
+  content: none;
+}
+
+.accordion__header:hover span {
+  text-decoration: underline;
+}
+
+.accordion__button {
+  color: unset !important;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.accordion__button:not(.collapsed) {
+  color: unset !important;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.accordion__button:focus {
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+
+.accordion__button.collapsed:before {
+  margin-top: 20px;
+  content: '';
+  background: url('img/arrow-down.jpg') 0 70%/15px no-repeat;
+  transform: none;
+}
+
+.question__bottom {
+  margin-bottom: 30px;
+  margin-top: 50px;
+  color: #0800FF;
+  font-family: Philosopher;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 36px;
+}
+
+.question__bottom_link {
+  color: #0800FF;
+  font-family: Philosopher;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 36px;
+  text-align: center;
+  text-decoration: underline;
+}
+
+.fa-arrow-circle-right,
+.fa-arrow-circle-left {
+  font-size: 35px;
+  color: #0800FF;;
+}
+
+.review img {
+  margin-top: 16px;
+  margin-bottom: 27px;
+  border-radius: 50%;
+}
+
+footer{
+  background: linear-gradient(to top, #5CC9FF, #ffffff);
+  color: #0800FF;
+}

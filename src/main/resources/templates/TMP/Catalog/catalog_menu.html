@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<html lang="en">-->
+<head>
+    <meta charset="UTF-8">
+    <title>Catalogs</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<h1 th:align="center"> Платежи </h1>
+<div>
+    <table th:align="center">
+        <tr>
+            <th>
+                <form action="/addAccountForm" method="GET">
+                    <button>Добавить счет</button>
+                </form>
+            </th>
+            <th>
+            <th>
+                <form action="/addAccountTypeForm" method="GET">
+                    <button>Добавить тип счета</button>
+                </form>
+            </th>
+            <th>
+                <form action="/addTransactionCategoryForm" method="GET">
+                    <button>Добавить категорию платежа</button>
+                </form>
+            </th>
+
+            <th>
+                <form action="/addTransactionSubcategoryForm" method="GET">
+                    <button>Добавить подкатегорию платежа</button>
+                </form>
+            </th>
+
+            <th>
+                <form action="/addCurrencyForm" method="GET">
+                    <button>Добавить тип валюты</button>
+                </form>
+            </th>
+            <th>
+            <th>
+                <form action="/addFinancialInstituteForm" method="GET">
+                    <button>Добавить финансовый институт</button>
+                </form>
+            </th>
+        </tr>
+        <tr>
+            <th th:align="center">
+                <form action="/transactionMenu" method="GET">
+                    <button>Назад</button>
+                </form>
+            </th>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
+

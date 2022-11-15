@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<html lang="en">-->
+<head>
+    <meta charset="UTF-8">
+    <title>Add transaction</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<h1 th:align="center">Добавление платежа</h1>
+<form th:align="center" action="/addTransaction" method="POST">
+    <!-- <p>Добавление платежа</p> -->
+    <div>
+        <label for="transactionDate">Дата</label>
+        <input name="date" id="transactionDate">
+    </div>
+    <div>
+        <label for="transactionSum">Сумма</label>
+        <input name="sum" id="transactionSum">
+    </div>
+    <div>
+        <label for="sourceAccount">Счет отправителя</label>
+        <input name="sourceAccount" id="sourceAccount">
+<!--        <select>-->
+<!--            <option>Выберите тип счета</option>-->
+<!--            <option th:each="account: ${accounts}" th:text="${account.title}">-->
+<!--            </option>-->
+<!--        </select>-->
+    </div>
+
+    <div>
+        <label for="targetAccount">Счет получателя</label>
+        <input name="targetAccount" id="targetAccount">
+<!--        <select>-->
+<!--            <option>Выберите тип счета</option>-->
+<!--            <option th:each="account: ${accounts}" th:text="${account.title}">-->
+<!--            </option>-->
+<!--        </select>-->
+    </div>
+
+<!--    <div class="transactionType">-->
+<!--        <label for="transactionType">Тип счета</label>-->
+<!--        <input name="transactionType" id="transactionType">-->
+<!--        <select>-->
+<!--            <option>Выберите тип счета</option>-->
+<!--            <option th:each="accountType : ${accountTypes}" th:text="${accountType.title}">-->
+<!--            </option>-->
+<!--        </select>-->
+    </div>
+    <div>
+        <label for="transactionCurrencyRate">Курс валюты</label>
+        <input name="currencyRate" id="transactionCurrencyRate">
+    </div>
+
+    <div class="transactionCategory">
+        <label>Выберите категорию</label>
+        <input name="transactionCategory" id="transactionCategory">
+        <!--            <input name="category" id="transactionCategory">-->
+<!--        <select>-->
+<!--            <option value="">Выберите категорию</option>-->
+<!--            <option th:each="transactionCategory : ${transactionCategories}"-->
+<!--                    th:if="${transactionCategory.getSuperCategory()} == null" th:text="${transactionCategory.title}">-->
+<!--            </option>-->
+<!--        </select>-->
+<!--        <label>Выберите подкатегорию</label>-->
+<!--        <select>-->
+<!--            <option value="">Выберите подкатегорию</option>-->
+<!--            <option value="" th:each="transactionCategory : ${transactionCategories}"-->
+<!--                    th:if="${transactionCategory.getSuperCategory()} != null"-->
+<!--                    th:text="${transactionCategory.title}"></option>-->
+<!--        </select>-->
+    </div>
+
+    <div>
+        <label for="transactionDescription">Назначение платежа</label>
+        <input name="description" id="transactionDescription">
+    </div>
+    <div>
+        <label for="transactionComments">Комментарии</label>
+        <input name="comments" id="transactionComments">
+    </div>
+    <div>
+        <button>Добавить платеж</button>
+    </div>
+</form>
+<form th:align="center" action="/transactionMenu" method="GET">
+    <button>Назад</button>
+</form>
+</body>
+</html>
+

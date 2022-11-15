@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<html lang="en">-->
+<head>
+    <meta charset="UTF-8">
+    <title>HLPFormForTransactions</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style type="text/css"></style>
+</head>
+<body>
+    <h1 align="center"> Платежи </h1>
+    <div align="center">
+    <p>Список платежей</p>
+</div>
+<div>
+    <table align="center">
+        <tr>
+            <th>
+                <form action="/correctTransaction" method="GET">
+                    <button>Изменить платеж</button>
+                </form>
+            </th>
+            <th>
+                <form action="/removeTransaction" method="GET">
+                    <button>Удалить платеж</button>
+                </form>
+            </th>
+            <th>
+                <form action="/searchTransaction" method="GET">
+                    <button>Изменить параметры поиска</button>
+                </form>
+            </th>
+            <th>
+                <form action="/transactionsMenu" method="GET">
+                    <button>Меню транзакций</button>
+                </form>
+            </th>
+            <th>
+                <form action="/mainMenu" method="GET">
+                    <button>Главное меню</button>
+                </form>
+            </th>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
+

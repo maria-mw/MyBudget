@@ -1,14 +1,13 @@
 package com.javaProjects.myBudget.controller;
 
 import com.javaProjects.myBudget.entity.*;
-import com.javaProjects.myBudget.repository.service.*;
+import com.javaProjects.myBudget.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -42,48 +41,6 @@ public class EasyWebBudgetController {
         model.addAttribute("typeList", typeList);
         List<SubCategory> subCategoryList = subCategoryRepositoryService.findAll();
         model.addAttribute("subCategoryList", subCategoryList);
-        List<Status> statusList = statusRepositoryService.findAll();
-        model.addAttribute("statusList", statusList);
-        return "transactionFormPage";
-    }
-
-    @GetMapping("/addTransactionChooseType")      //Goto Category Form Page.
-    public String addTransactionChooseTypeForm(Model model){
-        List<Type> typeList = typeRepositoryService.findAll();
-        model.addAttribute("typeList", typeList);
-        return "addTransactionTypePage";
-    }
-
-    @PostMapping("/addCategoryChooseType")
-    public String addCategoryChooseCategory(Model model, @RequestParam String typeId) {
-        Integer id = Integer.valueOf(typeId);
-        List<Category> categoryList = categoryRepositoryService.findAll();
-        List<Category> filteredCategoryList = new ArrayList<>();
-        for (Category category : categoryList) {
-            if (category.getType().getId().equals(id)) {
-                filteredCategoryList.add(category);
-            }
-        }
-        model.addAttribute("filteredCategoryList", filteredCategoryList);
-        return "addTransactionCategoryPage";
-    }
-
-    @PostMapping("/addCategoryChooseCategory")
-    public String addTransaction1(Transaction transaction, Model model, @RequestParam String categoryId) {
-        Integer id = Integer.valueOf(categoryId);
-        List<SubCategory> subCategoryList = subCategoryRepositoryService.findAll();
-        List<SubCategory> filteredSubCategoryList = new ArrayList<>();
-        for (SubCategory subCategory : subCategoryList) {
-            if (subCategory.getCategory().getId().equals(id)) {
-                filteredSubCategoryList.add(subCategory);
-            }
-        }
-        model.addAttribute("filteredSubCategoryList", filteredSubCategoryList);
-
-        List<Currency> currencyList = currencyRepositoryService.findAll();
-        model.addAttribute("currencyList", currencyList);
-//        List<SubCategory> subCategoryList = subCategoryRepositoryService.findAll();
-//        model.addAttribute("subCategoryList", subCategoryList);
         List<Status> statusList = statusRepositoryService.findAll();
         model.addAttribute("statusList", statusList);
         return "transactionFormPage";

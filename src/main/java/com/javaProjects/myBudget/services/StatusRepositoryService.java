@@ -1,4 +1,4 @@
-package com.javaProjects.myBudget.repository.service;
+package com.javaProjects.myBudget.services;
 
 import com.javaProjects.myBudget.entity.Status;
 import com.javaProjects.myBudget.entity.SubCategory;

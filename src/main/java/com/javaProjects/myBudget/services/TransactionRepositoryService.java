@@ -1,4 +1,4 @@
-package com.javaProjects.myBudget.repository.service;
+package com.javaProjects.myBudget.services;
 
 import com.javaProjects.myBudget.entity.Type;
 import org.springframework.beans.factory.annotation.Autowired;

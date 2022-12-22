@@ -3,6 +3,10 @@ package com.javaProjects.myBudget.dto;
 import com.javaProjects.myBudget.entity.Type;
 
 public class CategorySubcategoriesDTO {
+    private Integer id;
+    private String subCategoryTitle;
+    private String categoryTitle;
+    private String categoryType;
     public Integer getId() {
         return id;
     }
@@ -11,34 +15,28 @@ public class CategorySubcategoriesDTO {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getSubCategoryTitle() {
+        return subCategoryTitle;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setSubCategoryTitle(String subCategoryTitle) {
+        this.subCategoryTitle = subCategoryTitle;
     }
 
-    public String getSubcategory_title() {
-        return subcategory_title;
+    public String getCategoryTitle() {
+        return categoryTitle;
     }
 
-    public void setSubcategory_title(String subcategory_title) {
-        this.subcategory_title = subcategory_title;
+    public void setCategoryTitle(String categoryTitle) {
+        this.categoryTitle = categoryTitle;
     }
 
-    private Integer id;
-    private String title;
-
-    private String subcategory_title;
-
-    public String getCategory_type() {
-        return category_type;
+    public String getCategoryType() {
+        return categoryType;
     }
 
-    public void setCategory_type(String category_type) {
-        this.category_type = category_type;
+    public void setCategoryType(String categoryType) {
+        this.categoryType = categoryType;
     }
 
-    private String category_type;
 }

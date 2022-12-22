@@ -6,33 +6,31 @@ import com.javaProjects.myBudget.entity.SubCategory;
 import com.javaProjects.myBudget.entity.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.javaProjects.myBudget.repository.service.SubCategoryRepositoryService;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class MapService {
+public class MapService   {
     @Autowired
-    private SubCategoryRepositoryService categoryRepositoryService;
-
+    private SubCategoryRepositoryService subCategoryRepositoryService;
 
     public List<CategorySubcategoriesDTO> getAllCategorySubcategories() {
-        return ((List<SubCategory>)categoryRepositoryService
+        return ((List<SubCategory>)subCategoryRepositoryService
                 .findAll())
                 .stream()
                 .map(this::convertToCategorySubcategoriesDTO)
                     .collect(Collectors.toList());
     }
 
-    private CategorySubcategoriesDTO convertToCategorySubcategoriesDTO(SubCategory category) {
+    private CategorySubcategoriesDTO convertToCategorySubcategoriesDTO(SubCategory subCategory) {
         CategorySubcategoriesDTO categorySubcategoriesDTO = new CategorySubcategoriesDTO();
-        categorySubcategoriesDTO.setId(category.getId());
-        categorySubcategoriesDTO.setTitle(category.getTitle());
-        Category subcategory = category.getCategory();
-        categorySubcategoriesDTO.setSubcategory_title(subcategory.getTitle());
-        Type type = subcategory.getType();
-        categorySubcategoriesDTO.setCategory_type(type.getTitle());
+        categorySubcategoriesDTO.setId(subCategory.getId());
+        categorySubcategoriesDTO.setSubCategoryTitle(subCategory.getTitle());
+        Category category = subCategory.getCategory();
+        categorySubcategoriesDTO.setCategoryTitle(category.getTitle());
+        Type type = category.getType();
+        categorySubcategoriesDTO.setCategoryType(type.getTitle());
         return categorySubcategoriesDTO;
     }
 }

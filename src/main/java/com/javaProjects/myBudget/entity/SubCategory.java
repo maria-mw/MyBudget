@@ -8,13 +8,7 @@ import java.util.Set;
 @Entity
 @Table(name = "subcategory")
 public class SubCategory implements Serializable {
-    public Category getCategory() {
-        return category;
-    }
 
-    public void setCategory(Category category) {
-        this.category = category;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -58,5 +52,10 @@ public class SubCategory implements Serializable {
         this.comments = comments;
     }
 
-
+    public Category getCategory() {
+        return category;
+    }
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 }

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<html lang="en">-->
+<head>
+    <meta charset="UTF-8">
+    <title>Category To Subcategories</title>
+</head>
+<body>
+<h1> List Categories and SubCategories </h1> <hr/>
+
+<h3 th:text="${message}"></h3>
+<a th:href="@{/start}">Go Home Page</a>
+<center>
+    <table border="5" width="30%">
+        <tr>
+            <th> SubCategory ID </th>
+            <th> Category Title </th>
+            <th> SubCategory Title </th>
+            <th> Type Title </th>
+        </tr>
+        <tr th:each="tab : ${list}">
+            <td th:text="${tab.id}">  </td>
+            <td th:text="${tab.categoryTitle}">  </td>
+            <td th:text="${tab.subCategoryTitle}">  </td>
+            <td th:text="${tab.categoryType}">  </td>
+        </tr>
+    </table>
+</center>
+</body>
+</html>
+

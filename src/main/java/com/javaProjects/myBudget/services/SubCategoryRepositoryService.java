@@ -1,8 +1,8 @@
-package com.javaProjects.myBudget.repository.service;
+package com.javaProjects.myBudget.services;
 
 import com.javaProjects.myBudget.entity.Category;
 import com.javaProjects.myBudget.entity.SubCategory;
-import com.javaProjects.myBudget.repository.CategoryRepository;
+import com.javaProjects.myBudget.repository.SubCategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -16,34 +16,32 @@ import java.util.Optional;
 import java.util.function.Function;
 
 @Service
-public class CategoryRepositoryService implements CategoryRepository {
+public class SubCategoryRepositoryService implements SubCategoryRepository {
     @Autowired
-    private CategoryRepository categoryRepository;
-
-
+    private SubCategoryRepository subCategoryRepository;
     @Override                     //Save Category
-    public <S extends Category> S save(S entity) {
-        return categoryRepository.save(entity);
+    public <S extends SubCategory> S save(S entity) {
+        return subCategoryRepository.save(entity);
     }
 
     @Override                     //Display Categories
-    public List<Category> findAll() {
-        return categoryRepository.findAll();
+    public List<SubCategory> findAll() {
+        return subCategoryRepository.findAll();
     }
 
 
     @Override
-    public List<Category> findAll(Sort sort) {
+    public List<SubCategory> findAll(Sort sort) {
         return null;
     }
 
     @Override
-    public Page<Category> findAll(Pageable pageable) {
+    public Page<SubCategory> findAll(Pageable pageable) {
         return null;
     }
 
     @Override
-    public List<Category> findAllById(Iterable<Integer> integers) {
+    public List<SubCategory> findAllById(Iterable<Integer> integers) {
         return null;
     }
 
@@ -58,7 +56,7 @@ public class CategoryRepositoryService implements CategoryRepository {
     }
 
     @Override
-    public void delete(Category entity) {
+    public void delete(SubCategory entity) {
 
     }
 
@@ -68,7 +66,7 @@ public class CategoryRepositoryService implements CategoryRepository {
     }
 
     @Override
-    public void deleteAll(Iterable<? extends Category> entities) {
+    public void deleteAll(Iterable<? extends SubCategory> entities) {
 
     }
 
@@ -78,12 +76,12 @@ public class CategoryRepositoryService implements CategoryRepository {
     }
 
     @Override
-    public <S extends Category> List<S> saveAll(Iterable<S> entities) {
+    public <S extends SubCategory> List<S> saveAll(Iterable<S> entities) {
         return null;
     }
 
     @Override
-    public Optional<Category> findById(Integer integer) {
+    public Optional<SubCategory> findById(Integer integer) {
         return Optional.empty();
     }
 
@@ -98,17 +96,17 @@ public class CategoryRepositoryService implements CategoryRepository {
     }
 
     @Override
-    public <S extends Category> S saveAndFlush(S entity) {
+    public <S extends SubCategory> S saveAndFlush(S entity) {
         return null;
     }
 
     @Override
-    public <S extends Category> List<S> saveAllAndFlush(Iterable<S> entities) {
+    public <S extends SubCategory> List<S> saveAllAndFlush(Iterable<S> entities) {
         return null;
     }
 
     @Override
-    public void deleteAllInBatch(Iterable<Category> entities) {
+    public void deleteAllInBatch(Iterable<SubCategory> entities) {
 
     }
 
@@ -123,52 +121,52 @@ public class CategoryRepositoryService implements CategoryRepository {
     }
 
     @Override
-    public Category getOne(Integer integer) {
+    public SubCategory getOne(Integer integer) {
         return null;
     }
 
     @Override
-    public Category getById(Integer integer) {
+    public SubCategory getById(Integer integer) {
         return null;
     }
 
     @Override
-    public Category getReferenceById(Integer integer) {
+    public SubCategory getReferenceById(Integer integer) {
         return null;
     }
 
     @Override
-    public <S extends Category> Optional<S> findOne(Example<S> example) {
+    public <S extends SubCategory> Optional<S> findOne(Example<S> example) {
         return Optional.empty();
     }
 
     @Override
-    public <S extends Category> List<S> findAll(Example<S> example) {
+    public <S extends SubCategory> List<S> findAll(Example<S> example) {
         return null;
     }
 
     @Override
-    public <S extends Category> List<S> findAll(Example<S> example, Sort sort) {
+    public <S extends SubCategory> List<S> findAll(Example<S> example, Sort sort) {
         return null;
     }
 
     @Override
-    public <S extends Category> Page<S> findAll(Example<S> example, Pageable pageable) {
+    public <S extends SubCategory> Page<S> findAll(Example<S> example, Pageable pageable) {
         return null;
     }
 
     @Override
-    public <S extends Category> long count(Example<S> example) {
+    public <S extends SubCategory> long count(Example<S> example) {
         return 0;
     }
 
     @Override
-    public <S extends Category> boolean exists(Example<S> example) {
+    public <S extends SubCategory> boolean exists(Example<S> example) {
         return false;
     }
 
     @Override
-    public <S extends Category, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
+    public <S extends SubCategory, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
         return null;
     }
 }

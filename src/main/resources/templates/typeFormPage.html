@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<html lang="en">-->
+<head>
+    <meta charset="UTF-8">
+    <title>Add Type</title>
+</head>
+<body>
+<h1> Add New Type </h1> <hr/>
+<form th:action="@{/addType}" th:object="${type}" method="post">
+    Enter Type Title <br/>
+    <input type="text" th:field="*{title}"> <br/> <br/>
+    Enter Comments <br/>
+    <input type="text" th:field="*{comments}"> <br/> <br/>
+</form>
+<hr/>
+<h3 th:text="${message}"></h3>
+<a th:href="@{/start}">Go Home Page</a>
+<center>
+    <table border="5" width="30%">
+        <tr>
+            <th> Type ID </th>
+            <th> Type Title </th>
+            <th> Category Comments </th>
+        </tr>
+        <tr th:each="tab : ${data}">
+            <td th:text="${tab.id}">  </td>
+            <td th:text="${tab.title}">  </td>
+            <td th:text="${tab.comments}">  </td>
+        </tr>
+    </table>
+</center>
+</body>
+</html>
+

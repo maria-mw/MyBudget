@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<html lang="en">-->
+<head>
+    <meta charset="UTF-8">
+    <title>Category </title>
+</head>
+<body>
+<h1> Add New SubCategory </h1> <hr/>
+<form th:action="@{/addSubCategory}" th:object="${subCategory}" method="post">
+    Enter SubCategory Title <br/>
+    <input type="text" th:field="*{title}"> <br/> <br/>
+    Select Category <br/>
+    <select th:field="*{category}">
+        <option th:each="list : ${categoryList}"
+                th:value="${list.id}"
+                th:text="${list.title}"></option>
+    </select>
+    <br/>
+    <br/>
+    Enter Comments <br/>
+    <input type="text" th:field="*{comments}"> <br/> <br/>
+    <input type="submit" value="Submit">
+</form>
+<hr/>
+<h3 th:text="${message}"></h3>
+<a th:href="@{/start}">Go Home Page</a>
+<center>
+    <table border="5" width="30%">
+        <tr>
+            <th> SubCategory ID </th>
+            <th> SubCategory Title </th>
+            <th> Category Title </th>
+            <th> SubCategory Comments </th>
+        </tr>
+        <tr th:each="tab : ${data}">
+            <td th:text="${tab.id}">  </td>
+            <td th:text="${tab.title}">  </td>
+            <td th:text="${tab.category.title}">  </td>
+            <td th:text="${tab.comments}">  </td>
+        </tr>
+    </table>
+</center>
+</body>
+</html>
+

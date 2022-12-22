@@ -1,63 +1,96 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<html lang="en">-->
 <head>
     <meta charset="UTF-8">
-    <title>Insert Account</title>
+    <title>Category </title>
 </head>
 <body>
-<h1> New Account </h1> <hr/>
-<form th:action="@{/addAccount}" th:object="${account}" method="post">
+<h1> Add New Transaction </h1> <hr/>
+<form th:action="@{/addTransaction}" th:object="${transaction}" method="post">
+    Enter Date <br/>
+    <input type="text" th:field="*{date}"> <br/> <br/>
+    Enter Sum <br/>
+    <input type="text" th:field="*{sum}"> <br/> <br/>
+    Select Currency <br/>
+    <select th:field="*{currency}">
+        <option th:each="list : ${currencyList}"
+                th:value="${list.id}"
+                th:text="${list.title}"></option>
+    </select>
+    <br/>
+    <br/>
+    Type <br/> <p type="text" th:field="*{subCategory.category.type}" th:value="${subCategory.category.type.title}">  </p>
+    <br/> <br/>
+    Category <br/> <p type="text" th:field="*{subCategory.category}" th:value="${subCategory.category.title}">  </p>
+    <br/> <br/>
     Enter Description <br/>
+<!--    Select Type<br/>-->
+<!--    <select th:field="*{type}">-->
+<!--        <option th:each="list : ${typeList}"-->
+<!--                th:value="${list.id}"-->
+<!--                th:text="${list.title}"></option>-->
+<!--    </select>-->
+<!--    <br/>-->
+<!--    <br/>-->
+<!--    Select Category <br/>-->
+<!--    <select th:field="*{subCategory}">-->
+<!--        <option th:each="list : ${subCategoryList}"-->
+<!--                th:value="${list.category.id}"-->
+<!--                th:text="${list.category.title}"></option>-->
+<!--    </select>-->
+<!--    <br/>-->
+<!--    <br/>-->
+    Select SubCategory <br/>
+    <select th:field="*{subCategory}">
+        <option th:each="list : ${subCategoryList}"
+                th:value="${list.id}"
+                th:text="${list.title}"></option>
+    </select>
+    <br/>
+    <br/>
+    Select Status <br/>
+    <select th:field="*{status}">
+        <option th:each="list : ${statusList}"
+                th:value="${list.id}"
+                th:text="${list.title}"></option>
+    </select>
+    <br/>
+    <br/>
+    Enter Description <br/>
+    <input type="text" th:field="*{description}"> <br/> <br/>
+    Enter Comments <br/>
     <input type="text" th:field="*{comments}"> <br/> <br/>
-
-    Select Account Type <br/>
-    <select th:field="*{accountType}">
-        <option value=""> Nothing selected </option>
-        <option th:each="list : ${accountTypeList}"
-                th:value="${list.id}"
-                th:utext="${list.title}"></option>
-    </select>
-    <br/>
-    <br/>
-    Select Currency Type <br/>
-    <select th:field="*{currencyType}">
-        <option value=""> Nothing selected </option>
-        <option th:each="list : ${currencyTypeList}"
-                th:value="${list.id}"
-                th:utext="${list.title}"></option>
-    </select>
-    <br/>
-    <br/>
-    Select Financial Institute <br/>
-    <select th:field="*{financialInstitute}">
-        <option value=""> Nothing selected </option>
-        <option th:each="list : ${financialInstituteList}"
-                th:value="${list.id}"
-                th:utext="${list.title}"></option>
-    </select>
-    <br/>
-    <br/>
     <input type="submit" value="Submit">
 </form>
 <hr/>
-<a th:href="@{/home}">Go Home Page</a>
 <h3 th:text="${message}"></h3>
-
+<a th:href="@{/start}">Go Home Page</a>
 <center>
-    <table border="5" width="40%">
+    <table border="5" width="30%">
         <tr>
-            <th> ID </th>
-            <th> COMMENTS </th>
-            <th> ACCOUNT TYPE </th>
-            <th> CURRENCY TYPE </th>
-            <th> FINANCIAL INSTITUTE </th>
+            <th> Transaction ID </th>
+            <th> Transaction Date </th>
+            <th> Transaction Sum </th>
+            <th> Transaction Type </th>
+            <th> Transaction Category </th>
+            <th> Transaction SubCategory </th>
+            <th> Transaction Currency </th>
+            <th> Transaction Status </th>
+            <th> Transaction Description </th>
+            <th> SubCategory Comments </th>
         </tr>
         <tr th:each="tab : ${data}">
             <td th:text="${tab.id}">  </td>
+            <td th:text="${tab.date}">  </td>
+            <td th:text="${tab.sum}">  </td>
+            <td th:text="${tab.subCategory.category.type.title}">  </td>
+            <td th:text="${tab.subCategory.category.title}">  </td>
+            <td th:text="${tab.subCategory.title}">  </td>
+            <td th:text="${tab.currency.title}">  </td>
+            <td th:text="${tab.status.title}">  </td>
+            <td th:text="${tab.description}">  </td>
             <td th:text="${tab.comments}">  </td>
-            <td th:text="${tab.accountType.title}">  </td>
-            <td th:text="${tab.currencyType.title}">  </td>
-            <td th:text="${tab.financialInstitute.title}"></td>
         </tr>
     </table>
 </center>

@@ -50,10 +50,14 @@ public class EasyWebBudgetController {
     public String saveTransaction(Transaction transaction, Model model) {
         transactionRepositoryService.save(transaction);
         model.addAttribute("message","Record insert successfully...");
-        //Display Transaction Info
+        return "index";
+    }
+
+    @GetMapping("/listTransactions")
+    public String listTransactions(Model model) {
         List<Transaction> list = transactionRepositoryService.findAll();
         model.addAttribute("data",list);
-        return "transactionFormPage";
+        return "listTransactionsPage";
     }
 
     @GetMapping("/categoryForm")      //Goto Category Form Page.
@@ -67,10 +71,14 @@ public class EasyWebBudgetController {
     public String saveCurrency (Category category, Model model) {
         categoryRepositoryService.save(category);
         model.addAttribute("message","Record insert successfully...");
-        //Display Category Type Info
+        return "index";
+    }
+
+    @GetMapping("/listCategories")
+    public String listCategories(Model model) {
         List<Category> list = categoryRepositoryService.findAll();
         model.addAttribute("data",list);
-        return "categoryFormPage";
+        return "listCategoriesPage";
     }
 
     @GetMapping("/subCategoryForm")      //Goto SubCategory Form Page.
@@ -84,10 +92,14 @@ public class EasyWebBudgetController {
     public String saveCurrency (SubCategory subCategory, Model model) {
         subCategoryRepositoryService.save(subCategory);
         model.addAttribute("message","Record insert successfully...");
-        //Display SubCategory Info
+        return "index";
+    }
+
+    @GetMapping("/listSubCategories")
+    public String listSubCategories(Model model) {
         List<SubCategory> list = subCategoryRepositoryService.findAll();
         model.addAttribute("data",list);
-        return "subCategoryFormPage";
+        return "listSubCategoriesPage";
     }
     @GetMapping("/statusForm")      //Goto Status Form Page.
     public String statusForm(Status status){
@@ -98,12 +110,15 @@ public class EasyWebBudgetController {
     public String saveStatus (Status status, Model model) {
         statusRepositoryService.save(status);
         model.addAttribute("message","Record insert successfully...");
-        //Display Status Type Info
-        List<Status> list = statusRepositoryService.findAll();
-        model.addAttribute("data",list);
-        return "statusFormPage";
+        return "index";
     }
 
+    @GetMapping("/listStatuses")
+    public String listStatuses(Model model) {
+        List<Status> list = statusRepositoryService.findAll();
+        model.addAttribute("data",list);
+        return "listStatusesPage";
+    }
     @GetMapping("/typeForm")      //Goto Type Form Page.
     public String typeForm(Type type){
         return "typeFormPage";
@@ -113,10 +128,14 @@ public class EasyWebBudgetController {
     public String saveType (Type type, Model model) {
         typeRepositoryService.save(type);
         model.addAttribute("message","Record insert successfully...");
-        //Display Type Info
+        return "index";
+    }
+
+    @GetMapping("/listTypes")
+    public String listTypes(Model model) {
         List<Type> list = typeRepositoryService.findAll();
         model.addAttribute("data",list);
-        return "typeFormPage";
+        return "listTypesPage";
     }
 
     @GetMapping("/currencyForm")      //Goto Currency Form Page.
@@ -128,10 +147,14 @@ public class EasyWebBudgetController {
     public String saveCurrency (Currency currency, Model model) {
         currencyRepositoryService.save(currency);
         model.addAttribute("message","Record insert successfully...");
-        //Display Currency Type Info
+        return "index";
+    }
+
+    @GetMapping("/listCurrencies")
+    public String listCurrencies(Model model) {
         List<Currency> list = currencyRepositoryService.findAll();
         model.addAttribute("data",list);
-        return "currencyFormPage";
+        return "listCurrenciesPage";
     }
 
 

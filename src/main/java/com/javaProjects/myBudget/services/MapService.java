@@ -20,7 +20,7 @@ public class MapService   {
                 .findAll())
                 .stream()
                 .map(this::convertToCategorySubcategoriesDTO)
-                    .collect(Collectors.toList());
+                .collect(Collectors.toList());
     }
 
     private CategorySubcategoriesDTO convertToCategorySubcategoriesDTO(SubCategory subCategory) {
@@ -33,4 +33,7 @@ public class MapService   {
         categorySubcategoriesDTO.setCategoryType(type.getTitle());
         return categorySubcategoriesDTO;
     }
+
+
+
 }

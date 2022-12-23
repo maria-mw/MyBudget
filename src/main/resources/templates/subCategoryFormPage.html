@@ -25,22 +25,6 @@
 <hr/>
 <h3 th:text="${message}"></h3>
 <a th:href="@{/start}">Go Home Page</a>
-<center>
-    <table border="5" width="30%">
-        <tr>
-            <th> SubCategory ID </th>
-            <th> SubCategory Title </th>
-            <th> Category Title </th>
-            <th> SubCategory Comments </th>
-        </tr>
-        <tr th:each="tab : ${data}">
-            <td th:text="${tab.id}">  </td>
-            <td th:text="${tab.title}">  </td>
-            <td th:text="${tab.category.title}">  </td>
-            <td th:text="${tab.comments}">  </td>
-        </tr>
-    </table>
-</center>
 </body>
 </html>
 

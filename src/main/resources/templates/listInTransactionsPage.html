@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<html lang="en">-->
+<head>
+    <meta charset="UTF-8">
+    <title>Incoming Transaction</title>
+</head>
+<body>
+<h1> List of Incoming Transactions </h1> <hr/>
+
+<h3 th:text="${message}"></h3>
+<a th:href="@{/listTransactionTypes}">Transaction Types List</a>
+<a th:href="@{/start}">Go Home Page</a>
+<center>
+    <table border="5" width="30%">
+        <tr>
+            <th> Transaction ID </th>
+            <th> Transaction Date </th>
+            <th> Transaction Sum </th>
+            <th> Transaction Type </th>
+            <th> Transaction Description </th>
+        </tr>
+        <tr th:each="tab : ${list}">
+            <td th:text="${tab.id}">  </td>
+            <td th:text="${tab.date}">  </td>
+            <td th:text="${tab.sum}">  </td>
+            <td th:text="${tab.description}">  </td>
+            <td th:text="${tab.type}">  </td>
+        </tr>
+    </table>
+</center>
+</body>
+</html>
+

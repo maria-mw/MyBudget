@@ -17,20 +17,6 @@
 <hr/>
 <h3 th:text="${message}"></h3>
 <a th:href="@{/start}">Go Home Page</a>
-<center>
-    <table border="5" width="30%">
-        <tr>
-            <th> Currency ID </th>
-            <th> Currency Title </th>
-            <th> Currency Comments </th>
-        </tr>
-        <tr th:each="tab : ${data}">
-            <td th:text="${tab.id}">  </td>
-            <td th:text="${tab.title}">  </td>
-            <td th:text="${tab.comments}">  </td>
-        </tr>
-    </table>
-</center>
 </body>
 </html>
 

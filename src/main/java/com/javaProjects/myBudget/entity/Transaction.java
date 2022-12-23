@@ -50,7 +50,7 @@ public class Transaction implements Serializable {
     }
 
     public void setSum(Integer sum) {
-        sum = sum;
+        this.sum = sum;
     }
 
     public Status getStatus() {

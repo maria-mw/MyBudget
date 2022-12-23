@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<html lang="en">-->
+<head>
+    <meta charset="UTF-8">
+    <title>Category </title>
+</head>
+<body>
+
+<h3 th:text="${message}"></h3>
+<a th:href="@{/start}">Go Home Page</a>
+<center>
+    <table border="5" width="30%">
+        <tr>
+            <th> Transaction ID </th>
+            <th> Transaction Date </th>
+            <th> Transaction Sum </th>
+            <th> Transaction Type </th>
+            <th> Transaction Category </th>
+            <th> Transaction SubCategory </th>
+            <th> Transaction Currency </th>
+            <th> Transaction Status </th>
+            <th> Transaction Description </th>
+            <th> SubCategory Comments </th>
+        </tr>
+        <tr th:each="tab : ${data}">
+            <td th:text="${tab.id}">  </td>
+            <td th:text="${tab.date}">  </td>
+            <td th:text="${tab.sum}">  </td>
+            <td th:text="${tab.subCategory.category.type.title}">  </td>
+            <td th:text="${tab.subCategory.category.title}">  </td>
+            <td th:text="${tab.subCategory.title}">  </td>
+            <td th:text="${tab.currency.title}">  </td>
+            <td th:text="${tab.status.title}">  </td>
+            <td th:text="${tab.description}">  </td>
+            <td th:text="${tab.comments}">  </td>
+        </tr>
+    </table>
+</center>
+</body>
+</html>
+

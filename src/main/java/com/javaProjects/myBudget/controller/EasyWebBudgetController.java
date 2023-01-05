@@ -1,5 +1,6 @@
 package com.javaProjects.myBudget.controller;
 
+import com.javaProjects.myBudget.dto.CategorySubcategoriesDTO;
 import com.javaProjects.myBudget.entity.*;
 import com.javaProjects.myBudget.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 public class EasyWebBudgetController {
@@ -37,8 +40,6 @@ public class EasyWebBudgetController {
     public String transactionForm(Transaction transaction, Model model){
         List<Currency> currencyList = currencyRepositoryService.findAll();
         model.addAttribute("currencyList", currencyList);
-        List<Type> typeList = typeRepositoryService.findAll();
-        model.addAttribute("typeList", typeList);
         List<SubCategory> subCategoryList = subCategoryRepositoryService.findAll();
         model.addAttribute("subCategoryList", subCategoryList);
         List<Status> statusList = statusRepositoryService.findAll();
@@ -157,6 +158,88 @@ public class EasyWebBudgetController {
         return "listCurrenciesPage";
     }
 
+    @GetMapping("/test")
+    public String test(Transaction transaction, Model model){
+        List<Currency> currencyList = currencyRepositoryService.findAll();
+        model.addAttribute("currencyList", currencyList);
+        List<Type> typeList = typeRepositoryService.findAll();
+        model.addAttribute("typeList", typeList);
+        List<SubCategory> subCategoryList = subCategoryRepositoryService.findAll();
+        model.addAttribute("subCategoryList", subCategoryList);
+        List<Status> statusList = statusRepositoryService.findAll();
+        model.addAttribute("statusList", statusList);
+        return "addPage";
+    }
+
+    @GetMapping("/subCategoryForm1")
+    public String subCategoryForm1(Model model){
+        List<Category> categoryList = categoryRepositoryService.findAll();
+        model.addAttribute("categoryList", categoryList);
+        List<Type> typeList = typeRepositoryService.findAll();
+        model.addAttribute("typeList", typeList);
+        List<SubCategory> subCategoryList = subCategoryRepositoryService.findAll();
+        model.addAttribute("subCategoryList", subCategoryList);
+        return "subCategoryFormPage1";
+    }
+
+    @PostMapping("/chooseType")
+    public String chooseType(@RequestParam String type, Model model){
+        int typeInt = Integer.parseInt(type);
+        List<Type> typeList = typeRepositoryService
+                .findAll()
+                .stream()
+                .filter(t -> t.getId() == typeInt)
+                .collect(Collectors.toList());
+        model.addAttribute("typeList", typeList);
+        List<Category> categoryList = categoryRepositoryService
+                .findAll()
+                .stream()
+                .filter(t -> t.getType().getId() == typeInt)
+                .collect(Collectors.toList());
+        model.addAttribute("categoryList", categoryList);
+        List<SubCategory> subCategoryList = subCategoryRepositoryService.findAll();
+        model.addAttribute("subCategoryList", subCategoryList);
+        return "subCategoryFormPage1";
+    }
+
+    @PostMapping("/chooseCategory")
+    public String chooseCategory(@RequestParam String category, Model model){
+        int categoryInt = Integer.parseInt(category);
+        int typeInt = categoryRepositoryService.findById(categoryInt).get().getType().getId();
+        List<Category> categoryList = categoryRepositoryService
+                .findAll()
+                .stream()
+                .filter(t -> t.getId() == categoryInt)
+                .collect(Collectors.toList());
+        model.addAttribute("categoryList", categoryList);
+
+        List<Type> typeList = typeRepositoryService
+                .findAll()
+                .stream()
+                .filter(t -> t.getId() == typeInt)
+                .collect(Collectors.toList());
+        model.addAttribute("typeList", typeList);
+
+        List<SubCategory> subCategoryList = subCategoryRepositoryService
+                .findAll()
+                .stream()
+                .filter(t -> t.getCategory().getId() == categoryInt)
+                .collect(Collectors.toList());
+        model.addAttribute("subCategoryList", subCategoryList);
+        return "subCategoryFormPage1";
+    }
+    @GetMapping("/addTest")
+    public String addTest () {
+
+        return "index";
+    }
+
+//    @GetMapping("/listTest")
+//    public String listTest(Category category, Model model){
+//        List<Type> typeList = typeRepositoryService.findAll();
+//        model.addAttribute("typeList", typeList);
+//        return "index";
+//    }
 
 
 

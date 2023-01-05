@@ -2,12 +2,12 @@ INSERT INTO `mybudget`.`currency` (`id`, `title`, `comments`) VALUES ('1', 'RUB'
 INSERT INTO `mybudget`.`currency` (`id`, `title`, `comments`) VALUES ('2', 'USD', 'доллар США');
 INSERT INTO `mybudget`.`currency` (`id`, `title`, `comments`) VALUES ('3', 'EUR', 'евро');
 
-INSERT INTO `mybudget`.`type` (`id`, `title`, `comments`) VALUES ('1', 'зачисление', '');
-INSERT INTO `mybudget`.`type` (`id`, `title`, `comments`) VALUES ('2', 'списание', '');
+INSERT INTO `mybudget`.`type` (`id`, `title`, `comments`) VALUES ('1', 'Зачисление', '');
+INSERT INTO `mybudget`.`type` (`id`, `title`, `comments`) VALUES ('2', 'Списание', '');
 
-INSERT INTO `mybudget`.`status` (`id`, `title`, `comments`) VALUES ('1', 'проведен', '');
-INSERT INTO `mybudget`.`status` (`id`, `title`, `comments`) VALUES ('2', 'отменен', '');
-INSERT INTO `mybudget`.`status` (`id`, `title`, `comments`) VALUES ('3', 'план', '');
+INSERT INTO `mybudget`.`status` (`id`, `title`, `comments`) VALUES ('1', 'Проведен', '');
+INSERT INTO `mybudget`.`status` (`id`, `title`, `comments`) VALUES ('2', 'Отменен', '');
+INSERT INTO `mybudget`.`status` (`id`, `title`, `comments`) VALUES ('3', 'План', '');
 
 INSERT INTO `mybudget`.`category` (`id`, `title`, `type_id`, `comments`) VALUES ('1', 'Питание','2', '');
 INSERT INTO `mybudget`.`category` (`id`, `title`, `type_id`, `comments`) VALUES ('2', 'Автомобиль','2', '');

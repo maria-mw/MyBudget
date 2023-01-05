@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<html lang="en">-->
+<head>
+    <meta charset="UTF-8">
+    <title>Test page </title>
+</head>
+<body>
+<h1> Add New Test </h1> <hr/>
+<form th:action="@{/addTest}" th:object="${transaction}" method="post">
+    Select Type <br/>
+    <select th:field="*{type}">
+        <option th:each="list : ${typeList}"
+                th:value="${list.id}"
+                th:text="${list.title}"></option>
+    </select>
+    Select Category <br/>
+    <select th:field="*{category}">
+        <option th:each="list : ${categoryList}"
+                th:value="${list.id}"
+                th:text="${list.title}"></option>
+    </select>
+    <br/>
+    <br/>
+    Select SubCategory <br/>
+    <select th:field="*{subCategory}">
+        <option th:each="list : ${subCategoryList}"
+                th:value="${list.id}"
+                th:text="${list.title}"></option>
+    </select>
+    <br/>
+    <br/>
+<!--    Type <br/> <p type="text" th:field="*{subCategory.category.type}" th:value="${subCategory.category.type.title}">  </p>-->
+<!--    <br/> <br/>-->
+<!--    Category <br/> <p type="text" th:field="*{subCategory.category}" th:value="${subCategory.category.title}">  </p>-->
+<!--    <br/> <br/>-->
+<!--    Enter Description <br/>-->
+<!--    Select Type<br/>-->
+<!--    <select th:field="*{type}">-->
+<!--        <option th:each="list : ${typeList}"-->
+<!--                th:value="${list.id}"-->
+<!--                th:text="${list.title}"></option>-->
+<!--    </select>-->
+<!--    <br/>-->
+<!--    <br/>-->
+<!--    Select Category <br/>-->
+<!--    <select th:field="*{subCategory}">-->
+<!--        <option th:each="list : ${subCategoryList}"-->
+<!--                th:value="${list.category.id}"-->
+<!--                th:text="${list.category.title}"></option>-->
+<!--    </select>-->
+<!--    <br/>-->
+<!--    <br/>-->
+
+<!--    <br/>-->
+<!--    <br/>-->
+<!--    Enter Description <br/>-->
+<!--    <input type="text" th:field="*{description}"> <br/> <br/>-->
+<!--    Enter Comments <br/>-->
+<!--    <input type="text" th:field="*{comments}"> <br/> <br/>-->
+    <input type="submit" value="Submit">
+</form>
+<hr/>
+<h3 th:text="${message}"></h3>
+<a th:href="@{/start}">Go Home Page</a>
+</body>
+</html>
+

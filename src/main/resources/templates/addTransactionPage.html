@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<html lang="en">-->
+<head>
+    <meta charset="UTF-8">
+    <title>Transaction</title>
+</head>
+<body>
+<h1> Add New Transaction </h1> <hr/>
+<form th:action="@{/addTransactionDTO}" th:object="${transaction}" method="post">
+    Enter Date <br/>
+    <input type="text" th:field="${date}"> <br/> <br/>
+    Enter Sum <br/>
+    <input type="text" th:field="${sum}"> <br/> <br/>
+    Select Currency <br/>
+    <select th:field="*{currency}">
+        <option th:each="list : ${currencyList}"
+                th:value="${list.id}"
+                th:text="${list.title}"></option>
+    </select>
+    <br/>
+    <br/>
+<!--    Type <br/> <p type="text" th:field="*{subCategory.category.type}" th:value="${subCategory.category.type.title}">  </p>-->
+<!--    <br/> <br/>-->
+<!--    Category <br/> <p type="text" th:field="*{subCategory.category}" th:value="${subCategory.category.title}">  </p>-->
+<!--    <br/> <br/>-->
+<!--    Enter Description <br/>-->
+<!--    Select Type<br/>-->
+<!--    <select th:field="*{type}">-->
+<!--        <option th:each="list : ${typeList}"-->
+<!--                th:value="${list.id}"-->
+<!--                th:text="${list.title}"></option>-->
+<!--    </select>-->
+<!--    <br/>-->
+<!--    <br/>-->
+<!--    Select Category <br/>-->
+<!--    <select th:field="*{subCategory}">-->
+<!--        <option th:each="list : ${subCategoryList}"-->
+<!--                th:value="${list.category.id}"-->
+<!--                th:text="${list.category.title}"></option>-->
+<!--    </select>-->
+<!--    <br/>-->
+<!--    <br/>-->
+    Select SubCategory <br/>
+    <select th:field="*{subCategory}">
+        <option th:each="list : ${subCategoryList}"
+                th:value="${list.id}"
+                th:text="${list.title}"></option>
+    </select>
+    <br/>
+    <br/>
+    Select Status <br/>
+    <select th:field="*{status}">
+        <option th:each="list : ${statusList}"
+                th:value="${list.id}"
+                th:text="${list.title}"></option>
+    </select>
+    <br/>
+    <br/>
+    Enter Description <br/>
+    <input type="text" th:field="*{description}"> <br/> <br/>
+    Enter Comments <br/>
+    <input type="text" th:field="*{comments}"> <br/> <br/>
+    <input type="submit" value="Submit">
+</form>
+<hr/>
+<h3 th:text="${message}"></h3>
+<a th:href="@{/start}">Go Home Page</a>
+</body>
+</html>
+

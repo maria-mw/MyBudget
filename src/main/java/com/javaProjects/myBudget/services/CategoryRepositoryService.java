@@ -84,7 +84,8 @@ public class CategoryRepositoryService implements CategoryRepository {
 
     @Override
     public Optional<Category> findById(Integer integer) {
-        return Optional.empty();
+        Optional<Category> category = categoryRepository.findById(integer);
+        return category;
     }
 
     @Override

@@ -83,7 +83,7 @@ public class TransactionRepositoryService implements TransactionRepository {
 
     @Override
     public Optional<Transaction> findById(Integer integer) {
-        return Optional.empty();
+        return transactionRepository.findById(integer);
     }
 
     @Override

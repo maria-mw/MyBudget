@@ -1,81 +1,78 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <!--<html lang="en">-->
 <head>
     <meta charset="UTF-8">
     <title>Category </title>
 </head>
 <body>
-<h1> Add New SubCategory </h1> <hr/>
-<form th:action="@{/chooseType}" method="post">
-<!--    Enter SubCategory Title <br/>-->
-<!--    <input type="text" th:field="*{title}"> <br/><br/>-->
-<!--    Select Type <br/>-->
-<!--    <select th:field="*{category.type}">-->
-<!--        <option th:each="list : ${typeList}"-->
-<!--                th:value="${list.id}"-->
-<!--                th:text="${list.title}"></option>-->
-<!--    </select>-->
-<!--    <br/>-->
-<!--    <br/>-->
-<!--    Select Category <br/>-->
-<!--    <select th:field="*{category}">-->
-<!--        <option th:each="list : ${categoryList}"-->
-<!--                th:value="${list.id}"-->
-<!--                th:text="${list.title}"></option>-->
-<!--    </select>-->
-<!--    <br/>-->
-<!--    <br/>-->
-
-
-<!--    Enter SubCategory Title <br/>-->
-<!--    <input th:field="*{title}" type="text">-->
-<!--    <br/>-->
-<!--    <br/>-->
-
-    Select Type <br/>
-    <select id="type" name="type">
-<!--        <select th:field="*{category}" th:name="typeId" onchange="this.form.submit()">-->
-<!--        <option th:value="default"> Выберите тип</option>-->
-        <option th:each="list : ${typeList}"
-                th:text="${list.title}" th:value="${list.id}"></option>
-    </select>
-    <input type="submit" value="Ok">
-    <br/>
-    <br/>
-</form>
-<form th:action="@{/chooseCategory}" method="post">
-    Select Category <br/>
-    <select id="category" name="category">
-<!--        <select th:field="*{category}">-->
-        <option th:each="list : ${categoryList}"
-                th:text="${list.title}" th:value="${list.id}"></option>
-    </select>
-    <input type="submit" value="Ok">
-    <br/>
-<!--    th:if="${list.getType().getId()} == 2"-->
-<!--    <option th:each="transactionCategory : ${transactionCategories}"-->
-<!--            th:if="${transactionCategory.getSuperCategory()} == null" th:text="${transactionCategory.title}"-->
-<!--            th:value="${transactionCategory.id}">-->
-<!--    </option>-->
-<!--    th:if="${list.title} == ${Питание}"-->
-    <br/>
-
-<!--    <input type="submit" value="Submit">-->
-</form>
-
-<form th:action="@{/addSubcategory}" method="post">
-    Select SubCategory <br/>
-    <select id="subCategory" name="subCategory">
-        <!--        <select th:field="*{category}">-->
-        <option th:each="list : ${subCategoryList}"
-                th:text="${list.title}" th:value="${list.id}"></option>
-    </select>
-    <br/>
-</form>
+<h1> Add New SubCategory </h1>
 <hr/>
+    <form th:action="@{/chooseType}" method="post">
+        Select Type <br/>
+        <select id="type" name="type">
+            <option th:each="list : ${typeList}"
+                    th:text="${list.title}" th:value="${list.id}"></option>
+        </select>
+        <input type="submit" value="Ok">
+        <br/>
+        <br/>
+    </form>
+    <form th:action="@{/chooseCategory}" method="post">
+        Select Category <br/>
+        <select id="category" name="category">
+            <option th:each="list : ${categoryList}"
+                    th:text="${list.title}" th:value="${list.id}"></option>
+        </select>
+        <input type="submit" value="Ok">
+        <br/>
+        <br/>
+    </form>
+    <form th:action="@{/chooseSubCategory}" method="post">
+        Select SubCategory <br/>
+        <select id="subCategory" name="subCategory">
+            <option th:each="list : ${subCategoryList}"
+                    th:text="${list.title}" th:value="${list.id}"></option>
+        </select>
+        <input type="submit" value="Ok">
+        <br/>
+    </form>
+<hr/>
+</br>
 <h3 th:text="${message}"></h3>
+<a th:href="@{/subCategoryForm1}">Reset</a>
+</br>
 <a th:href="@{/start}">Go Home Page</a>
+</br>
+</br>
+<center>
+    <table border="5" width="30%">
+        <tr>
+            <th> Transaction ID </th>
+            <th> Transaction Date </th>
+            <th> Transaction Sum </th>
+            <th> Transaction Type </th>
+            <th> Transaction Category </th>
+            <th> Transaction SubCategory </th>
+            <th> Transaction Currency </th>
+            <th> Transaction Status </th>
+            <th> Transaction Description </th>
+            <th> SubCategory Comments </th>
+        </tr>
+        <tr th:each="tab : ${transactions}">
+            <td th:text="${tab.id}">  </td>
+            <td th:text="${tab.date}">  </td>
+            <td th:text="${tab.sum}">  </td>
+            <td th:text="${tab.subCategory.category.type.title}">  </td>
+            <td th:text="${tab.subCategory.category.title}">  </td>
+            <td th:text="${tab.subCategory.title}">  </td>
+            <td th:text="${tab.currency.title}">  </td>
+            <td th:text="${tab.status.title}">  </td>
+            <td th:text="${tab.description}">  </td>
+            <td th:text="${tab.comments}">  </td>
+        </tr>
+    </table>
+</center>
 </body>
 </html>
 

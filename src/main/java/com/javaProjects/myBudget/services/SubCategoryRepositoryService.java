@@ -82,7 +82,7 @@ public class SubCategoryRepositoryService implements SubCategoryRepository {
 
     @Override
     public Optional<SubCategory> findById(Integer integer) {
-        return Optional.empty();
+        return subCategoryRepository.findById(integer);
     }
 
     @Override

@@ -14,6 +14,7 @@ import com.javaProjects.myBudget.repository.TypeRepository;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 public class TypeRepositoryService implements TypeRepository {
@@ -169,5 +170,12 @@ public class TypeRepositoryService implements TypeRepository {
     @Override
     public <S extends Type, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
         return null;
+    }
+
+    public List<Type> findTypeById(Integer type) {
+        return   findAll()
+                .stream()
+                .filter(t -> t.getId().equals(type))
+                .collect(Collectors.toList());
     }
 }

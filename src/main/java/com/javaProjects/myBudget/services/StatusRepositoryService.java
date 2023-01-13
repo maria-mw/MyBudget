@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 public class StatusRepositoryService implements StatusRepository {
@@ -169,5 +170,12 @@ public class StatusRepositoryService implements StatusRepository {
     @Override
     public <S extends Status, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
         return null;
+    }
+
+    public List<Status> findStatusById(Integer status) {
+        return findAll()
+                .stream()
+                .filter(t -> t.getId().equals(status))
+                .collect(Collectors.toList());
     }
 }

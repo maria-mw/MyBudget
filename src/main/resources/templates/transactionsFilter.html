@@ -3,13 +3,24 @@
 <!--<html lang="en">-->
 <head>
     <meta charset="UTF-8">
-    <title>Category </title>
+    <title>Transactions </title>
 </head>
 <body>
-<h1> Add New SubCategory </h1>
+<h1> Transactions Filtration </h1>
 <hr/>
+
+    <form th:action="@{/chooseStatus}" method="post">
+        Select Transaction Status <br/>
+        <select id="status" name="status">
+            <option th:each="list : ${statusList}"
+                    th:text="${list.title}" th:value="${list.id}"></option>
+        </select>
+        <input type="submit" value="Ok">
+        <br/>
+        <br/>
+    </form>
     <form th:action="@{/chooseType}" method="post">
-        Select Type <br/>
+        Select Transaction Type <br/>
         <select id="type" name="type">
             <option th:each="list : ${typeList}"
                     th:text="${list.title}" th:value="${list.id}"></option>
@@ -40,7 +51,7 @@
 <hr/>
 </br>
 <h3 th:text="${message}"></h3>
-<a th:href="@{/subCategoryForm1}">Reset</a>
+<a th:href="@{/transactionsFilter}">Reset</a>
 </br>
 <a th:href="@{/start}">Go Home Page</a>
 </br>
@@ -72,6 +83,7 @@
             <td th:text="${tab.comments}">  </td>
         </tr>
     </table>
+   <p th:text="'ИТОГО = '+ ${sum}"></p>
 </center>
 </body>
 </html>

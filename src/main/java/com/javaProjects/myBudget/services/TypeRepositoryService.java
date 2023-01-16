@@ -1,6 +1,7 @@
 package com.javaProjects.myBudget.services;
 
 import com.javaProjects.myBudget.entity.Currency;
+import com.javaProjects.myBudget.entity.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -84,7 +85,7 @@ public class TypeRepositoryService implements TypeRepository {
 
     @Override
     public Optional<Type> findById(Integer integer) {
-        return Optional.empty();
+        return typeRepository.findById(integer);
     }
 
     @Override
@@ -129,7 +130,7 @@ public class TypeRepositoryService implements TypeRepository {
 
     @Override
     public Type getById(Integer integer) {
-        return null;
+        return findById(integer).orElse(null);
     }
 
     @Override
@@ -170,12 +171,5 @@ public class TypeRepositoryService implements TypeRepository {
     @Override
     public <S extends Type, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
         return null;
-    }
-
-    public List<Type> findTypeById(Integer type) {
-        return   findAll()
-                .stream()
-                .filter(t -> t.getId().equals(type))
-                .collect(Collectors.toList());
     }
 }

@@ -2,6 +2,7 @@ package com.javaProjects.myBudget.services;
 
 import com.javaProjects.myBudget.entity.Category;
 import com.javaProjects.myBudget.entity.SubCategory;
+import com.javaProjects.myBudget.entity.Type;
 import com.javaProjects.myBudget.repository.SubCategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 public class SubCategoryRepositoryService implements SubCategoryRepository {
@@ -64,17 +66,14 @@ public class SubCategoryRepositoryService implements SubCategoryRepository {
     public void deleteAllById(Iterable<? extends Integer> integers) {
 
     }
-
     @Override
     public void deleteAll(Iterable<? extends SubCategory> entities) {
 
     }
-
     @Override
     public void deleteAll() {
 
     }
-
     @Override
     public <S extends SubCategory> List<S> saveAll(Iterable<S> entities) {
         return null;
@@ -127,7 +126,7 @@ public class SubCategoryRepositoryService implements SubCategoryRepository {
 
     @Override
     public SubCategory getById(Integer integer) {
-        return null;
+        return findById(integer).orElse(null);
     }
 
     @Override
@@ -169,4 +168,20 @@ public class SubCategoryRepositoryService implements SubCategoryRepository {
     public <S extends SubCategory, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
         return null;
     }
+
+    public List<SubCategory> listSubCategoriesFilteredByCategoryId(Integer categoryId) {
+        return findAll()
+                .stream()
+                .filter(t -> t.getCategory().getId().equals(categoryId))
+                .collect(Collectors.toList());
+    }
+
+    public Integer getTypeIdBySubCategoryId(Integer subCategoryId) {
+        return getById(subCategoryId).getCategory().getType().getId();
+    }
+
+    public Integer getCategoryIdBySubCategoryId(Integer subCategoryId) {
+        return getById(subCategoryId).getCategory().getId();
+    }
+
 }

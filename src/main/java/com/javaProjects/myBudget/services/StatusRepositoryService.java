@@ -2,6 +2,7 @@ package com.javaProjects.myBudget.services;
 
 import com.javaProjects.myBudget.entity.Status;
 import com.javaProjects.myBudget.entity.SubCategory;
+import com.javaProjects.myBudget.entity.Transaction;
 import com.javaProjects.myBudget.repository.StatusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -84,7 +85,7 @@ public class StatusRepositoryService implements StatusRepository {
 
     @Override
     public Optional<Status> findById(Integer integer) {
-        return Optional.empty();
+        return statusRepository.findById(integer);
     }
 
     @Override
@@ -129,7 +130,7 @@ public class StatusRepositoryService implements StatusRepository {
 
     @Override
     public Status getById(Integer integer) {
-        return null;
+        return findById(integer).orElse(null);
     }
 
     @Override
@@ -172,10 +173,4 @@ public class StatusRepositoryService implements StatusRepository {
         return null;
     }
 
-    public List<Status> findStatusById(Integer status) {
-        return findAll()
-                .stream()
-                .filter(t -> t.getId().equals(status))
-                .collect(Collectors.toList());
-    }
 }

@@ -29,7 +29,7 @@ public class MyBudgetController {
     @Autowired
     private StatusRepository statusRepository;
 
-    private Integer statusInt;
+    private Integer statusId;
 
     @GetMapping({"/","/start","/index"})    //Goto index Page.
     public String view(){
@@ -158,21 +158,9 @@ public class MyBudgetController {
         return "listCurrenciesPage";
     }
 
-    @GetMapping("/test")
-    public String test(Transaction transaction, Model model){
-        List<Currency> currencyList = currencyRepositoryService.findAll();
-        model.addAttribute("currencyList", currencyList);
-        List<Type> typeList = typeRepositoryService.findAll();
-        model.addAttribute("typeList", typeList);
-        List<SubCategory> subCategoryList = subCategoryRepositoryService.findAll();
-        model.addAttribute("subCategoryList", subCategoryList);
-        List<Status> statusList = statusRepositoryService.findAll();
-        model.addAttribute("statusList", statusList);
-        return "addPage";
-    }
-
     @GetMapping("/transactionsFilter")
     public String allTransactionsListSort(Model model){
+        statusId = -1;
         List<Status> statusList = statusRepositoryService.findAll();
         model.addAttribute("statusList", statusList);
         List<Category> categoryList = categoryRepositoryService.findAll();
@@ -183,158 +171,79 @@ public class MyBudgetController {
         model.addAttribute("subCategoryList", subCategoryList);
         List<Transaction> list = transactionRepositoryService.findAll();
         model.addAttribute("transactions",list);
-        model.addAttribute("sum", transactionsSum(list));
+        model.addAttribute("sum", transactionRepositoryService.transactionsSum(list));
         return "transactionsFilter";
     }
 
     @PostMapping("/chooseStatus")
     public String chooseStatus(@RequestParam String status, Model model){
-        statusInt = Integer.parseInt(status);
-        List<Transaction> transactions = sortTransactionsByStatus(statusInt);
-        model.addAttribute("statusList", statusRepositoryService.findStatusById(statusInt));
+        statusId = Integer.parseInt(status);
+        List<Transaction> transactions = transactionRepositoryService.filterTransactionsByStatus(statusId);
+        model.addAttribute("statusList", statusRepositoryService.getById(statusId));
         model.addAttribute("typeList", typeRepositoryService.findAll());
         model.addAttribute("categoryList",categoryRepositoryService.findAll());
         model.addAttribute("subCategoryList", subCategoryRepositoryService.findAll());
         model.addAttribute("transactions",transactions);
-        model.addAttribute("sum", transactionsSum(transactions));
+        model.addAttribute("sum", transactionRepositoryService.transactionsSum(transactions));
         return "transactionsFilter";
     }
     @PostMapping("/chooseType")
     public String chooseType(@RequestParam String type, Model model){
-        Integer typeInt = Integer.parseInt(type);
-        List<Transaction> transactions = sortTransactionsByType(typeInt, sortTransactionsByStatus(statusInt));
-        model.addAttribute("statusList", statusRepositoryService.findStatusById(statusInt));
-        model.addAttribute("typeList", typeRepositoryService.findTypeById(typeInt));
-        model.addAttribute("categoryList",listCategoriesSortedByType(typeInt));
+        Integer typeId = Integer.parseInt(type);
+        List<Transaction> transactions = transactionRepositoryService.filterTransactionsByTypeAndStatus(typeId, statusId);
+        model.addAttribute("statusList", statusRepositoryService.getById(statusId));
+        model.addAttribute("typeList", typeRepositoryService.getById(typeId));
+        model.addAttribute("categoryList",categoryRepositoryService.listCategoriesFilteredByTypeId(typeId));
         model.addAttribute("subCategoryList", subCategoryRepositoryService.findAll());
         model.addAttribute("transactions",transactions);
-        model.addAttribute("sum", transactionsSum(transactions));
+        model.addAttribute("sum", transactionRepositoryService.transactionsSum(transactions));
         return "transactionsFilter";
     }
 
     @PostMapping("/chooseCategory")
     public String chooseCategory(@RequestParam String category, Model model){
-        Integer categoryInt = Integer.parseInt(category);
-        Integer typeInt = categoryRepositoryService.findById(categoryInt).get().getType().getId();
-        List<Transaction> transactions = sortTransactionsByCategory(categoryInt, sortTransactionsByType(typeInt, sortTransactionsByStatus(statusInt)));
-        model.addAttribute("statusList", statusRepositoryService.findStatusById(statusInt));
-        model.addAttribute("typeList", typeRepositoryService.findTypeById(typeInt));
-        model.addAttribute("categoryList",findCategoryById(categoryInt));
-        model.addAttribute("subCategoryList", listSubCategoriesSorted(categoryInt));
+        Integer categoryId = Integer.parseInt(category);
+        Integer typeId = categoryRepositoryService.getTypeIdByCategoryId(categoryId);
+        List<Transaction> transactions = transactionRepositoryService.filterTransactionsByCategoryAndTypeAndStatus(categoryId, typeId, statusId);
+        model.addAttribute("statusList", statusRepositoryService.getById(statusId));
+        model.addAttribute("typeList", typeRepositoryService.getById(typeId));
+        model.addAttribute("categoryList",categoryRepositoryService.getById(categoryId));
+        model.addAttribute("subCategoryList", subCategoryRepositoryService.listSubCategoriesFilteredByCategoryId(categoryId));
         model.addAttribute("transactions",transactions);
-        model.addAttribute("sum", transactionsSum(transactions));
+        model.addAttribute("sum", transactionRepositoryService.transactionsSum(transactions));
         return "transactionsFilter";
     }
 
     @PostMapping("/chooseSubCategory")
     public String chooseSubCategory(@RequestParam String subCategory, Model model){
-        Integer subCategoryInt = Integer.parseInt(subCategory);
-        Integer categoryInt = subCategoryRepositoryService.findById(subCategoryInt).get().getCategory().getId();
-        Integer typeInt = subCategoryRepositoryService.findById(subCategoryInt).get().getCategory().getType().getId();
-        List<Transaction> transactions = sortTransactionsBySubCategory(subCategoryInt, sortTransactionsByCategory(categoryInt, sortTransactionsByType(typeInt, sortTransactionsByStatus(statusInt))));
-        model.addAttribute("statusList", statusRepositoryService.findStatusById(statusInt));
-        model.addAttribute("typeList", typeRepositoryService.findTypeById(typeInt));
-        model.addAttribute("categoryList",findCategoryById(categoryInt));
-        model.addAttribute("subCategoryList", findSubCategoryById(subCategoryInt));;
+        Integer subCategoryId = Integer.parseInt(subCategory);
+        Integer categoryId = subCategoryRepositoryService.getCategoryIdBySubCategoryId(subCategoryId);
+        Integer typeId = subCategoryRepositoryService.getTypeIdBySubCategoryId(subCategoryId);
+        List<Transaction> transactions = transactionRepositoryService.filterTransactionsBySubCategoryAndCategoryAndTypeAndStatus(subCategoryId, categoryId, typeId, statusId);
+        model.addAttribute("statusList", statusRepositoryService.getById(statusId));
+        model.addAttribute("typeList", typeRepositoryService.getById(typeId));
+        model.addAttribute("categoryList",categoryRepositoryService.getById(categoryId));
+        model.addAttribute("subCategoryList", subCategoryRepositoryService.getById(subCategoryId));;
         model.addAttribute("transactions", transactions);
-        model.addAttribute("sum", transactionsSum(transactions));
+        model.addAttribute("sum", transactionRepositoryService.transactionsSum(transactions));
         return "transactionsFilter";
     }
 
-//    private List<Status> findStatusById(Integer status) {
-//        return statusRepositoryService
-//                .findAll()
-//                .stream()
-//                .filter(t -> t.getId().equals(status))
-//                .collect(Collectors.toList());
-//    }
-
-
-//    private List<Type> findTypeById(Integer type) {
-//        return typeRepositoryService
-//                .findAll()
-//                .stream()
-//                .filter(t -> t.getId().equals(type))
-//                .collect(Collectors.toList());
-//    }
-
-    private List<Category> listCategoriesSortedByType(Integer type) {
-        return categoryRepositoryService
-                .findAll()
-                .stream()
-                .filter(t -> t.getType().getId().equals(type))
-                .collect(Collectors.toList());
-    }
-    private List<Category> findCategoryById(Integer category) {
-        return categoryRepositoryService
-                .findAll()
-                .stream()
-                .filter(t -> t.getId().equals(category))
-                .collect(Collectors.toList());
+    @PostMapping({"/test1"})    //Goto index Page.
+    public String test1() {
+        return "transactionsFilter";
     }
 
-    private List<SubCategory> listSubCategoriesSorted(Integer category) {
-        return subCategoryRepositoryService
-                .findAll()
-                .stream()
-                .filter(t -> t.getCategory().getId().equals(category))
-                .collect(Collectors.toList());
+    @GetMapping("/test")
+    public String test (@RequestParam String transactionId, Model model){
+        Integer transactionIdInt = Integer.parseInt(transactionId);
+        Transaction transact = transactionRepositoryService.getById(transactionIdInt);
+        model.addAttribute("transact", transact);
+        List<Status> statusList = statusRepositoryService.findAll();
+        model.addAttribute("statusList", statusList);
+        return "test";
     }
 
-    private List<SubCategory> findSubCategoryById(Integer subCategory) {
-        return subCategoryRepositoryService
-                .findAll()
-                .stream()
-                .filter(t -> t.getId().equals(subCategory))
-                .collect(Collectors.toList());
-    }
-
-    private List<Transaction> sortTransactionsByStatus(Integer status) {
-        return transactionRepositoryService
-                .findAll()
-                .stream()
-                .filter(t -> t.getStatus().getId().equals(status))
-                .collect(Collectors.toList());
-    }
-    private List<Transaction> sortTransactionsByType(Integer type, List<Transaction> transactions) {
-        return transactions
-                .stream()
-                .filter(t -> t.getSubCategory().getCategory().getType().getId().equals(type))
-                .collect(Collectors.toList());
-    }
-
-    private List<Transaction> sortTransactionsByCategory(Integer category, List<Transaction> transactions) {
-        return transactions
-                .stream()
-                .filter(t -> t.getSubCategory().getCategory().getId().equals(category))
-                .collect(Collectors.toList());
-    }
-
-    private List<Transaction> sortTransactionsBySubCategory(Integer subCategory, List<Transaction> transactions) {
-        return transactions
-                .stream()
-                .filter(t -> t.getSubCategory().getId().equals(subCategory))
-                .collect(Collectors.toList());
-    }
-
-    private String transactionsSum(List<Transaction> transactions) {
-        int sum = 0;
-        for (Transaction transaction : transactions) {
-            if (transaction.getSubCategory().getCategory().getType().getTitle().equals("Зачисление")){
-                sum += transaction.getSum();
-            }
-            else {
-                sum -= transaction.getSum();
-            }
-        }
-        return String.valueOf(sum);
-    }
-
-    @GetMapping("/addTest")
-    public String addTest () {
-
-        return "index";
-    }
 
 
 

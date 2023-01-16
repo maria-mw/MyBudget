@@ -1,5 +1,6 @@
 package com.javaProjects.myBudget.services;
 
+import com.javaProjects.myBudget.entity.Category;
 import com.javaProjects.myBudget.entity.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -14,11 +15,13 @@ import com.javaProjects.myBudget.repository.TransactionRepository;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 public class TransactionRepositoryService implements TransactionRepository {
     @Autowired
     private TransactionRepository transactionRepository;
+//    List<Transaction> transactionsList = transactionRepository.findAll();
 
 
     @Override                     //Save Transaction
@@ -128,7 +131,8 @@ public class TransactionRepositoryService implements TransactionRepository {
 
     @Override
     public Transaction getById(Integer integer) {
-        return null;
+        Optional<Transaction> transaction = transactionRepository.findById(integer);
+        return transaction.orElse(null);
     }
 
     @Override
@@ -169,5 +173,48 @@ public class TransactionRepositoryService implements TransactionRepository {
     @Override
     public <S extends Transaction, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
         return null;
+    }
+
+    public List<Transaction> filterTransactionsByStatus(Integer status) {
+        return findAll()
+                .stream()
+                .filter(t -> t.getStatus().getId().equals(status))
+                .collect(Collectors.toList());
+    }
+    public List<Transaction> filterTransactionsByTypeAndStatus(Integer type, Integer status) {
+        List<Transaction> transactionsByStatus = filterTransactionsByStatus(status);
+        return transactionsByStatus
+                .stream()
+                .filter(t -> t.getSubCategory().getCategory().getType().getId().equals(type))
+                .collect(Collectors.toList());
+    }
+
+    public List<Transaction> filterTransactionsByCategoryAndTypeAndStatus(Integer category, Integer type, Integer status) {
+        List<Transaction> transactionsByTypeAndStatus = filterTransactionsByTypeAndStatus(type,status);
+        return transactionsByTypeAndStatus
+                .stream()
+                .filter(t -> t.getSubCategory().getCategory().getId().equals(category))
+                .collect(Collectors.toList());
+    }
+
+    public List<Transaction> filterTransactionsBySubCategoryAndCategoryAndTypeAndStatus(Integer subCategory,Integer category, Integer type, Integer status) {
+        List<Transaction> transactionsByCategoryAndTypeAndStatus = filterTransactionsByCategoryAndTypeAndStatus (category,type,status);
+        return transactionsByCategoryAndTypeAndStatus
+                .stream()
+                .filter(t -> t.getSubCategory().getId().equals(subCategory))
+                .collect(Collectors.toList());
+    }
+
+    public String transactionsSum(List<Transaction> transactions) {
+        int sum = 0;
+        for (Transaction transaction : transactions) {
+            if (transaction.getSubCategory().getCategory().getType().getTitle().equals("Зачисление")){
+                sum += transaction.getSum();
+            }
+            else {
+                sum -= transaction.getSum();
+            }
+        }
+        return String.valueOf(sum);
     }
 }

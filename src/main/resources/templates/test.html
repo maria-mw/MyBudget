@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<!--<html lang="en">-->
+<head>
+    <meta charset="UTF-8">
+    <title>Transactions </title>
+</head>
+<body>
+<h1> Edit Transaction </h1>
+
+<form th:action="@{/test1}" method="post" th:object="${transaction}">
+    Transaction ID <br/>
+    <p th:text="${transact.id}"></p>
+    Transaction Date <br/>
+    <p th:text="${transact.date}"></p>
+    <input type="text" th:field="${transact.date}"> <br/> <br/>
+    Transaction Sum <br/>
+    <p th:text="${transact.sum}"></p>
+    <input type="text" th:field="${transact.sum}"> <br/> <br/>
+    Transaction Type <br/>
+    <p th:text="${transact.subCategory.category.type.title}"></p>
+    Transaction Category <br/>
+    <p th:text="${transact.subCategory.category.title}"></p>
+    Transaction SubCategory <br/>
+    <p th:text="${transact.subCategory.title}"></p>
+    Transaction Currency <br/>
+    <p th:text="${transact.currency.title}"></p>
+    Transaction Status <br/>
+    <p th:text="${transact.status.title}"></p>
+    Select Status <br/>
+    <select>
+        <option th:each="list : ${statusList}"
+                th:value="${list.id}"
+                th:text="${list.title}"></option>
+    </select>
+    <br/>
+    <br/>
+    Transaction Description <br/>
+    <p th:text="${transact.description}"></p>
+    <input type="text" th:field="${transact.description}"> <br/> <br/>
+    Transaction Comments <br/>
+    <p th:text="${transact.comments}"></p>
+    <input type="text" th:field="${transact.comments}"> <br/> <br/>
+    <br/>
+    <br/>
+    <input type="submit" value="Submit">
+</form>
+<a th:href="@{/transactionsFilter}">Return</a>
+</br>
+<a th:href="@{/start}">Go Home Page</a>
+</br>
+</br>
+<!--<center>-->
+<!--    <form th:action="@{/test}" method="post">-->
+<!--    <table border="5" width="30%">-->
+<!--        <tr>-->
+<!--            <th> Transaction ID </th>-->
+<!--            <th> Transaction Date </th>-->
+<!--            <th> Transaction Sum </th>-->
+<!--            <th> Transaction Type </th>-->
+<!--            <th> Transaction Category </th>-->
+<!--            <th> Transaction SubCategory </th>-->
+<!--            <th> Transaction Currency </th>-->
+<!--            <th> Transaction Status </th>-->
+<!--            <th> Transaction Description </th>-->
+<!--            <th> SubCategory Comments </th>-->
+<!--        </tr>-->
+<!--        <tr th:each="tab : ${transactions}">-->
+<!--            <td th:text="${tab.id}" >  </td>-->
+<!--            <td th:text="${tab.date}">  </td>-->
+<!--            <td th:text="${tab.sum}">  </td>-->
+<!--            <td th:text="${tab.subCategory.category.type.title}">  </td>-->
+<!--            <td th:text="${tab.subCategory.category.title}">  </td>-->
+<!--            <td th:text="${tab.subCategory.title}">  </td>-->
+<!--            <td th:text="${tab.currency.title}">  </td>-->
+<!--            <td th:text="${tab.status.title}">  </td>-->
+<!--            <td th:text="${tab.description}">  </td>-->
+<!--            <td th:text="${tab.comments}">  </td>-->
+<!--        </tr>-->
+<!--    </table>-->
+<!--   <p th:text="'ИТОГО = '+ ${sum}"></p>-->
+<!--    </form>-->
+<!--</center>-->
+</body>
+</html>
+

@@ -2,6 +2,7 @@ package com.javaProjects.myBudget.services;
 
 import com.javaProjects.myBudget.entity.Category;
 import com.javaProjects.myBudget.entity.SubCategory;
+import com.javaProjects.myBudget.entity.Type;
 import com.javaProjects.myBudget.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 public class CategoryRepositoryService implements CategoryRepository {
@@ -129,7 +131,7 @@ public class CategoryRepositoryService implements CategoryRepository {
 
     @Override
     public Category getById(Integer integer) {
-        return null;
+        return findById(integer).orElse(null);
     }
 
     @Override
@@ -171,4 +173,15 @@ public class CategoryRepositoryService implements CategoryRepository {
     public <S extends Category, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
         return null;
     }
+    public List<Category> listCategoriesFilteredByTypeId(Integer typeId) {
+        return findAll()
+                .stream()
+                .filter(t -> t.getType().getId().equals(typeId))
+                .collect(Collectors.toList());
+    }
+
+    public Integer getTypeIdByCategoryId(Integer categoryId) {
+       return getById(categoryId).getType().getId();
+    }
+
 }

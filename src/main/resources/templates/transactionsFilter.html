@@ -57,7 +57,8 @@
 </br>
 </br>
 <center>
-    <table border="5" width="30%">
+<!--    <form th:action="@{/test}" method="post">-->
+    <table border="5" width="30%" >
         <tr>
             <th> Transaction ID </th>
             <th> Transaction Date </th>
@@ -71,7 +72,7 @@
             <th> SubCategory Comments </th>
         </tr>
         <tr th:each="tab : ${transactions}">
-            <td th:text="${tab.id}">  </td>
+            <td> <a th:text="${tab.id}" th:href="@{/test(transactionId=${tab.id})}" th:value="${tab.id}"></a> </td>
             <td th:text="${tab.date}">  </td>
             <td th:text="${tab.sum}">  </td>
             <td th:text="${tab.subCategory.category.type.title}">  </td>
@@ -82,8 +83,15 @@
             <td th:text="${tab.description}">  </td>
             <td th:text="${tab.comments}">  </td>
         </tr>
+        <tr>
+            <td></td>
+            <td>TOTAL</td>
+            <td th:text="${sum}"></td>
+        </tr>
     </table>
-   <p th:text="'ИТОГО = '+ ${sum}"></p>
+<!--        <a th:href="@{/test}">TEST</a>-->
+<!--   <p th:text="'ИТОГО = '+ ${sum}"></p>-->
+<!--    </form>-->
 </center>
 </body>
 </html>

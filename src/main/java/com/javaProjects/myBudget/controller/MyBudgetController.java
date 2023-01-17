@@ -229,18 +229,24 @@ public class MyBudgetController {
         return "transactionsFilter";
     }
 
-    @PostMapping({"/test1"})    //Goto index Page.
-    public String test1() {
-        return "transactionsFilter";
+    @PostMapping({"/test1"})
+    public String test1(@RequestParam String transactId,  @RequestParam String transactSum, Model model) {
+        Integer transactionIdInt = Integer.parseInt(transactId);
+        Integer transactionSumInt = Integer.parseInt(transactSum.replace(",",""));
+        Transaction transact = transactionRepositoryService.getById(transactionIdInt);
+        transact.setSum(transactionSumInt);
+        transactionRepositoryService.save(transact);
+        model.addAttribute("transact", transact);
+        return "test";
     }
 
     @GetMapping("/test")
     public String test (@RequestParam String transactionId, Model model){
         Integer transactionIdInt = Integer.parseInt(transactionId);
-        Transaction transact = transactionRepositoryService.getById(transactionIdInt);
-        model.addAttribute("transact", transact);
-        List<Status> statusList = statusRepositoryService.findAll();
-        model.addAttribute("statusList", statusList);
+        Transaction transaction = transactionRepositoryService.getById(transactionIdInt);
+        model.addAttribute("transact", transaction);
+//        List<Status> statusList = statusRepositoryService.findAll();
+//        model.addAttribute("statusList", statusList);
         return "test";
     }
 

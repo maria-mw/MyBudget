@@ -130,6 +130,7 @@ public class StatusRepositoryService implements StatusRepository {
 
     @Override
     public Status getById(Integer integer) {
+
         return findById(integer).orElse(null);
     }
 

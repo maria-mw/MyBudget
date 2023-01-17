@@ -8,39 +8,37 @@
 <body>
 <h1> Edit Transaction </h1>
 
-<form th:action="@{/test1}" method="post" th:object="${transaction}">
-    Transaction ID <br/>
-    <p th:text="${transact.id}"></p>
-    Transaction Date <br/>
-    <p th:text="${transact.date}"></p>
-    <input type="text" th:field="${transact.date}"> <br/> <br/>
-    Transaction Sum <br/>
-    <p th:text="${transact.sum}"></p>
-    <input type="text" th:field="${transact.sum}"> <br/> <br/>
-    Transaction Type <br/>
-    <p th:text="${transact.subCategory.category.type.title}"></p>
-    Transaction Category <br/>
-    <p th:text="${transact.subCategory.category.title}"></p>
-    Transaction SubCategory <br/>
-    <p th:text="${transact.subCategory.title}"></p>
-    Transaction Currency <br/>
-    <p th:text="${transact.currency.title}"></p>
-    Transaction Status <br/>
-    <p th:text="${transact.status.title}"></p>
-    Select Status <br/>
-    <select>
-        <option th:each="list : ${statusList}"
-                th:value="${list.id}"
-                th:text="${list.title}"></option>
-    </select>
-    <br/>
-    <br/>
-    Transaction Description <br/>
-    <p th:text="${transact.description}"></p>
-    <input type="text" th:field="${transact.description}"> <br/> <br/>
-    Transaction Comments <br/>
-    <p th:text="${transact.comments}"></p>
-    <input type="text" th:field="${transact.comments}"> <br/> <br/>
+<form th:action="@{/test1(transactId=${transact.id}, transactSum=${transactSum})}" method="post" th:object="${transact}">
+    <p><b  th:id="transactId" th:text="'Transaction ID: '+ ${transact.id}" th:value="${transact.id}"> Transaction ID</b></p>
+<!--    <p><b th:text="'Transaction Date: '+ ${transact.date}"></b></p>-->
+<!--    <input type="text" th:field="${transact.date}"> <br/><br/>-->
+    <p><b th:text="'Transaction Sum: '+ ${transact.sum}"></b></p>
+    <input type="text"  th:id="transactSum"  th:name="transactSum" th:value="${transactSum}"> <br/>
+<!--    <a th:text='Save' th:href="@{/test1(transactId=${transact.id}, transactSum=${transactSum})}"  ></a><br/>-->
+<!--    Transaction Type <br/>-->
+<!--    <p th:text="${transact.subCategory.category.type.title}"></p>-->
+<!--    Transaction Category <br/>-->
+<!--    <p th:text="${transact.subCategory.category.title}"></p>-->
+<!--    Transaction SubCategory <br/>-->
+<!--    <p th:text="${transact.subCategory.title}"></p>-->
+<!--    Transaction Currency <br/>-->
+<!--    <p th:text="${transact.currency.title}"></p>-->
+<!--    Transaction Status <br/>-->
+<!--    <p th:text="${transact.status.title}"></p>-->
+<!--    Select Status <br/>-->
+<!--    <select>-->
+<!--        <option th:each="list : ${statusList}"-->
+<!--                th:value="${list.id}"-->
+<!--                th:text="${list.title}"></option>-->
+<!--    </select>-->
+<!--    <br/>-->
+<!--    <br/>-->
+<!--    Transaction Description <br/>-->
+<!--    <p th:text="${transact.description}"></p>-->
+<!--    <input type="text" th:field="${transact.description}"> <br/> <br/>-->
+<!--    Transaction Comments <br/>-->
+<!--    <p th:text="${transact.comments}"></p>-->
+<!--    <input type="text" th:field="${transact.comments}"> <br/> <br/>-->
     <br/>
     <br/>
     <input type="submit" value="Submit">
